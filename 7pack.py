@@ -34,7 +34,11 @@ if args.install:
     print("Fetching index...")
     index_url = "https://raw.githubusercontent.com/Nv7-GitHub/7Pack/master/repo.json"
     index = loads(get(index_url).text)
-    mkdir("tmp")
+    try:
+        mkdir("tmp")
+    except FileExistsError:
+        rmtree("tmp")
+        mkdir("tmp")
 
     for pkg in pkgs:
         if pkg in index:
@@ -120,7 +124,11 @@ if args.upgrade:
     print("Fetching index...")
     index_url = "https://raw.githubusercontent.com/Nv7-GitHub/7Pack/master/repo.json"
     index = loads(get(index_url).text)
-    mkdir("tmp")
+    try:
+        mkdir("tmp")
+    except FileExistsError:
+        rmtree("tmp")
+        mkdir("tmp")
 
     for pkg in pkgs:
         if pkg in index:
