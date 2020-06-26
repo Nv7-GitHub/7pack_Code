@@ -1,6 +1,6 @@
 from sys import executable
 from os import system
-from setuptools import setup
+from distutils.core import setup
 from os import remove
 
 # put shebang
