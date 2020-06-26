@@ -27,7 +27,7 @@ setup(name="7pack",
             "License :: OSI Approved :: MIT License",
             "Operating System :: MacOS",
         ],
-      version="0.0.1",
+      version="0.0.2",
       author="Nishant Vikramaditya",
       author_email="junk4Nv7@gmail.com",
       )
