@@ -10,6 +10,7 @@ from subprocess import call
 from os.path import isfile
 from os import mkdir
 from sys import executable
+from git.exc import GitCommandError
 chdir("/".join(executable.split("/")[:-1]))
 
 parser = argparse.ArgumentParser(description='A python package manager.')
@@ -42,9 +43,13 @@ if args.install:
 
     for pkg in pkgs:
         if pkg in index:
-            print("Downloading package from " + index[pkg] + "...")
-            Git("tmp").clone(index[pkg])
-            pkgfile = index[pkg].split("/")[-1]
+            try:
+                print("Downloading package from " + index[pkg] + "...")
+                Git("tmp").clone(index[pkg])
+                pkgfile = index[pkg].split("/")[-1]
+            except GitCommandError:
+                print("Skipping " + pkg + " as it has not been indexed in the 7pack index.")
+                continue
 
             print("Running setup.py...")
             origdir = getcwd()
